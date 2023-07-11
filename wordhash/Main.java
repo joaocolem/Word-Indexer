@@ -13,7 +13,6 @@ public class Main {
         
         HashTable hashTable = new HashTable();
         hashTable.insert("casa","arquivo3");
-        hashTable.search("bobora");
         hashTable.insert("casa","arquivo1");
         hashTable.insert("casa","arquivo2");
         hashTable.insert("casa","arquivo2");

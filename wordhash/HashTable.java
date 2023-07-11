@@ -43,7 +43,7 @@ public class HashTable {
       int hashValue = stringIntoInt(stringKey);
       hashValue = hashFunction(hashValue);
       if(hashTable[hashValue] == null){
-        System.out.println("o elemento não se encontra");
+        System.out.println("Element not found");
         return;
       }
       
@@ -58,11 +58,11 @@ public class HashTable {
     }
     
      
-    public int hashFunction(int id){
+    private int hashFunction(int id){
         return id % HASHMOD;
     }
     
-    public int stringIntoInt(String word){
+    private int stringIntoInt(String word){
         int k = 0;
         for (int i = 0; i < word.length(); i++) {
             k = (k * BASE + word.charAt(i));
