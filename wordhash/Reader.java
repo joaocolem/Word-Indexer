@@ -23,7 +23,7 @@ public class Reader {
     
     
     public static void main(String[] args) {
-        String folder = "C:\\Users\\joao_\\Documents\\NetBeansProjects\\PalavraEmHash\\src\\wordhash\\wordhash_txtFiles";
+        String folder = "C:\\Users\\0066824\\Documents\\gitProjectsVscode\\Word-Indexer\\Word-Indexer\\wordhash";
         analyzeFilesInFolder(folder);
         hashTable.search("queijo");
         hashTable.search("casa");
