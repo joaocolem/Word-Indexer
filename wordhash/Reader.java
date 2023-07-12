@@ -9,7 +9,7 @@ package wordhash;
  * @author joao_
  */
 
-
+import java.util.regex.Pattern;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import java.io.File;
@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Reader {
-    private static String[] stopWordsArray = {"a", "ao", "aos", "aquela", "aquelas", "aquele", "aqueles", "aquilo", "as", "até", "com", "como", "da", "das", "de", "dela", "delas", "dele", "deles", "depois", "do", "dos", "e", "ela", "elas", "ele", "eles", "em", "entre", "era", "eram", "essa", "essas", "esse", "esses", "esta", "estas", "este", "estes", "eu", "isso", "isto", "já", "lhe", "lhes", "mais", "mas", "me", "mesmo", "meu", "meus", "minha", "minhas", "muito", "na", "nas", "não", "no", "nos", "nossa", "nossas", "nosso", "nossos", "num", "numa", "nós", "o", "os", "ou", "para", "pela", "pelas", "pelo", "pelos", "por", "quando", "que", "se", "sem", "seu", "seus", "sua", "suas", "só", "também", "te", "tem", "teu", "teus", "tu", "tua", "tuas", "um", "uma", "você", "vocês"};
+    private static String[] stopWordsArray = {"o","a", "ao", "aos", "aquela", "aquelas", "aquele", "aqueles", "aquilo", "as", "até", "com", "como", "da", "das", "de", "dela", "delas", "dele", "deles", "depois", "do", "dos", "e", "ela", "elas", "ele", "eles", "em", "entre", "era", "eram", "essa", "essas", "esse", "esses", "esta", "estas", "este", "estes", "eu", "isso", "isto", "já", "lhe", "lhes", "mais", "mas", "me", "mesmo", "meu", "meus", "minha", "minhas", "muito", "na", "nas", "não", "no", "nos", "nossa", "nossas", "nosso", "nossos", "num", "numa", "nós", "o", "os", "ou", "para", "pela", "pelas", "pelo", "pelos", "por", "quando", "que", "se", "sem", "seu", "seus", "sua", "suas", "só", "também", "te", "tem", "teu", "teus", "tu", "tua", "tuas", "um", "uma", "você", "vocês"};
     private static List<String> stopWords = Arrays.asList(stopWordsArray);    
     
     private static HashTable hashTable = new HashTable();
@@ -45,7 +45,7 @@ public class Reader {
     
         // Solicitar que o usuário insira a palavra-chave
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Digite a palavra-chave: ");
+        System.out.print("Enter the key word: ");
         String keyWord = scanner.nextLine();
     
         hashTable.search(keyWord);
@@ -70,16 +70,18 @@ public class Reader {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] words = line.split(" ");
+                String[] words = line.split("\\W+");
                 for (String word : words) {
-                    if (!stopWords.contains(word))
+                    if (!word.isEmpty() && !stopWords.contains(word)) {
                         hashTable.insert(word, fileName);
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    
     
     
     
