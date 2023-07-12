@@ -9,12 +9,10 @@ package wordhash;
  * @author joao_
  */
 
-import java.util.regex.Pattern;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -48,7 +46,7 @@ public class Reader {
         System.out.print("Enter the key word: ");
         String keyWord = scanner.nextLine();
     
-        hashTable.search(keyWord);
+        hashTable.search(keyWord.toLowerCase());
     }
 
    public static void analyzeFilesInFolder(String folder) {
@@ -73,7 +71,7 @@ public class Reader {
                 String[] words = line.split("\\W+");
                 for (String word : words) {
                     if (!word.isEmpty() && !stopWords.contains(word)) {
-                        hashTable.insert(word, fileName);
+                        hashTable.insert(word.toLowerCase(), fileName);
                     }
                 }
             }
