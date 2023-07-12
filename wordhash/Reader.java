@@ -8,6 +8,11 @@ package wordhash;
  *
  * @author joao_
  */
+
+
+import java.util.Scanner;
+import javax.swing.JFileChooser;
+import java.io.File;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -22,11 +27,28 @@ public class Reader {
     private static HashTable hashTable = new HashTable();
     
     
+
     public static void main(String[] args) {
-        String folder = "C:\\Users\\0066824\\Documents\\gitProjectsVscode\\Word-Indexer\\Word-Indexer\\wordhash";
-        analyzeFilesInFolder(folder);
-        hashTable.search("queijo");
-        hashTable.search("casa");
+        // Exibir o seletor de pasta para o usuário
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = fileChooser.showOpenDialog(null);
+    
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFolder = fileChooser.getSelectedFile();
+            String folderPath = selectedFolder.getAbsolutePath();
+            analyzeFilesInFolder(folderPath);
+        } else {
+            System.out.println("No folder selected.");
+            return;
+        }
+    
+        // Solicitar que o usuário insira a palavra-chave
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite a palavra-chave: ");
+        String keyWord = scanner.nextLine();
+    
+        hashTable.search(keyWord);
     }
 
    public static void analyzeFilesInFolder(String folder) {

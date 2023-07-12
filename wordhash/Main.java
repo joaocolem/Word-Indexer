@@ -23,7 +23,6 @@ public class Main {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFolder = fileChooser.getSelectedFile();
             String folderPath = selectedFolder.getAbsolutePath();
-            folderPath = "C:\\Users\\0066824\\Documents\\gitProjectsVscode\\Word-Indexer\\Word-Indexer\\wordhash";
             Reader.analyzeFilesInFolder(folderPath);
         } else {
             System.out.println("Nenhuma pasta selecionada.");
