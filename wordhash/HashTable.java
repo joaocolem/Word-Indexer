@@ -9,10 +9,8 @@ package wordhash;
 import java.util.LinkedList;
 public class HashTable {
 
-    static int HASHMOD=101,BASE =128;
+    static int HASHMOD=701,BASE =128;
     private LinkedList<Word>[] hashTable = new LinkedList[HASHMOD];
-    
-
     
     public void insert(String stringKey, String fileName){
       int hashValue = stringIntoInt(stringKey);
@@ -36,8 +34,6 @@ public class HashTable {
             
         }
         
-
-
     public void search(String stringKey){
       
       int hashValue = stringIntoInt(stringKey);
@@ -57,7 +53,6 @@ public class HashTable {
 
     }
     
-     
     private int hashFunction(int id){
         return id % HASHMOD;
     }
